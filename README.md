@@ -1,42 +1,50 @@
-🗄️ IoC Database Manager (Memory Edition)
+🛡️ Smart Log Analyzer (Regex Edition)
 
 📋 Project Overview
 
-This project is a Python-based utility for managing Indicators of Compromise (IoCs). It simulates the core functionality of a Threat Intelligence Platform (TIP), allowing security analysts to maintain a local database of malicious IP addresses in system memory.
+This project is a high-performance log parsing tool designed for SOC (Security Operations Center) environments. It demonstrates the ability to transform "raw" and "noisy" system logs into structured, actionable security intelligence using Python and Advanced Regular Expressions.
 
-The goal of this project is to demonstrate proficiency in Data Structures (Lists of Dictionaries) and Conditional Logic.
+This tool is a key part of my security automation portfolio, aimed at roles in companies like Red Hat, Honeywell, and major Czech financial institutions (ČSOB, Česká spořitelna).
 
-🛠️ Key Technical Skills
+🛠️ Technical Deep Dive
 
-In-Memory Data Management: Utilizing a list of dictionaries to represent complex objects.
+The script implements several professional programming patterns:
 
-Search & Filtering: Implementing search logic to match live log data against a threat database.
+Advanced Regex (Named Capture Groups): Instead of using index-based matching, the script uses (?P...) syntax. This makes the code highly maintainable and allows the use of .groupdict() for instant data structuring.
 
-Duplicate Prevention: Logical checks to ensure data integrity by preventing redundant entries.
+Dynamic Pattern Matching: Patterns for different log sources (SSH, Firewall) are stored in a dictionary, making it easy to add support for new log types (e.g., Nginx, Windows Events) without changing the core engine.
 
-List Comprehensions: Using Pythonic ways to filter and remove data efficiently.
+Security Logic & Classification:
 
-⚙️ Functionality
+Automated detection of failed login attempts and dropped connections.
 
-add_ioc(): Validates and inserts new threat actors into the database.
+Visual alerting: Uses [!] for potential threats (Failed, DROP) and [V] for legitimate traffic.
 
-remove_ioc(): Efficiently clears outdated or whitelisted entries.
+Data Integrity: Includes an "Unknown Format" handler to ensure that non-matching lines are flagged for review rather than silently ignored.
 
-check_ip(): Provides instant lookups for SOC investigations.
+📊 Logic Example
 
-show_stats(): Generates a high-level overview of the current threat landscape.
+Input Raw Log: Feb 07 12:10:12 firewall-ext filter: DROP connection from 185.220.101.5
 
-🏦 Use Case for Red Hat / Honeywell
+Structured Extraction:
 
-In large environments, analysts often need to create "quick and dirty" scripts to track specific attack campaigns during an incident. This tool showcases the ability to build a structured, searchable system for tracking malicious activity without the overhead of a full SQL database.
+{
+  "action": "DROP",
+  "ip": "185.220.101.5",
+  "user": "N/A"
+}
+🚀 Installation & Usage
 
-🚀 Getting Started
+Ensure you have Python 3.x installed.
 
-Run the script to see the simulation of IoC management:
+Clone this repository.
 
-python ioc_manager.py
+Add your log data to the LOG_DUMP variable in log_analyzer.py.
 
+Run the analyzer:
 
-👨‍💻 Developer
+python python log_analyzer.py
 
-Developed as part of a Python for SOC curriculum, focusing on automation for Czech banking (ČSOB/Spořitelna) and global tech leaders (Red Hat/Honeywell).
+📈 Portfolio Context
+
+This is Project #2 in my SOC Automation track. While Project #1 focused on basic setup, this project proves my ability to handle unstructured data—one of the most frequent challenges in real-world security monitoring.
