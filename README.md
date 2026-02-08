@@ -28,11 +28,13 @@ Input Raw Log: Feb 07 12:10:12 firewall-ext filter: DROP connection from 185.220
 
 Structured Extraction:
 
+```python
 {
   "action": "DROP",
   "ip": "185.220.101.5",
   "user": "N/A"
 }
+```
 🚀 Installation & Usage
 
 Ensure you have Python 3.x installed.
@@ -43,8 +45,9 @@ Add your log data to the LOG_DUMP variable in log_analyzer.py.
 
 Run the analyzer:
 
-python python log_analyzer.py
+```python python log_analyzer.py ```
 
 📈 Portfolio Context
 
 This is Project #2 in my SOC Automation track. While Project #1 focused on basic setup, this project proves my ability to handle unstructured data—one of the most frequent challenges in real-world security monitoring.
+
